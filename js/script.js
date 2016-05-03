@@ -4,47 +4,87 @@ document.getElementById('loadQuote').addEventListener("click", printQuote, false
 
 //defining variables we will need in the functions as placeholders
  
-var quoteObject;
-var message;
-var printObject;
+
+var message = '';
+
  
 //setting up the print function to print the randomly selected quote
  
 function print(message) {     
-                var outputDiv = document.getElementById('quote-box').innerHTML
+                var outputDiv = document.getElementById('quote-box');
                 outputDiv.innerHTML = message;
-               
+}               
  
- 
+//quotes array containing objects for printQuote to print to the page
+
 var quotes = [
 {
                 quote: "Some people don't like change, but you need to embrace change if the alternative is disaster.",
-                source: "Elon Musk"
+                source: "Elon Musk",           
 },
 {
-                quote: "It's always wonderful to get to know women, with the mystery and the joy and the depth.  If you can make a woman laugh you're seeing the most beautiful thing on God's earth.",
-                source: "Keanu Reeves"
+                quote: "Knowledge, like air, is vital to life. Like air, no one should be denied it.",
+                source: "Alan Moore",
+                citation: "V for Vendetta",
+                year: "1982"
+                
 },
 {
                 quote: "Reality is Wrong. Dreams are for real.",
-                source: "Tupac Shakur"
-},
+                source: "Tupac Shakur",
+},                
 {
                 quote: "Push yourself again and again.  Don't give an inch until the final buzzer sounds.",
-                source: "Larry Bird"
+                source: "Larry Bird",
+                
 },
 {
-                quote: "I tend to think you're fearless when you recognize why you should be scared of things, but do them anyway.",
-                source: "Christian Bale"
-}
+                quote: "Believing takes practice.",
+                source: "Madeleine L'engle",
+                citation: "A Wrinkle In Time",
+                year: "1963"
+}                
 ];
  
+
+//a function that creates a random number between 0 and 4 to randomly select an object or index of the quotes array and return the value of it.
+
 function getRandomQuote() {
-                quoteObject = quotes[math.floor(Math.random() * quotes.length)];
+                var quoteObject = quotes[Math.floor(Math.random() * quotes.length)];
                 return quoteObject;
- 
+}
+
+/*a function that prints out the random quote selected to the page, it does this by creating strings with HTML tags.
+The function also uses if conditionals to check if the objects contain the "citation" and "year" property.
+If the objects have these properties they are also printed to the page.
+*/
+
+function RandomColors() {
+		var red = Math.floor(Math.random() * 256);
+		var green = Math.floor(Math.random() * 256);
+		var blue = Math.floor(Math.random() * 256);
+		var colors = 'rgb(' + red + ',' + green + ',' + blue + ')'
+		return colors;
+		console.log(colors);
+}
+
 function printQuote() {
-                printObject = getRandomQuote();
-                console.log(printObject);
- 
-print(message);
+				var getRandomColors = RandomColors();
+				document.body.style.backgroundColor = getRandomColors;
+                var printObject = getRandomQuote();
+                message += '<p class="quote"> ' + printObject.quote + '</p>';
+                message += '<p class="source"> ' + printObject.source + '</p>';
+                if (printObject.citation !== undefined) {
+                	message += '<span class ="citation"> ' + printObject.citation + '</span>';
+                }
+                if (printObject.year !== undefined) {
+                	message += '<span class ="year"> ' + printObject.year + '</span>';
+                }
+                print(message);
+                message = '';
+            }
+
+
+
+
+//pop an object off the array to no longer have it show up, once the array has 0 objects restart the cycle!
