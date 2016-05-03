@@ -1,5 +1,6 @@
 // event listener to respond to clicks on the page
 // when user clicks anywhere on the page, the "makeQuote" function is called
+
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
 //defining variables
@@ -26,10 +27,10 @@ function getRandomQuote() {
 }
 
 
-/*a function that prints out the random quote selected to the page, it does this by creating strings with HTML tags.
-The function also uses if conditionals to check if the objects contain the "citation" and "year" property.
-If the objects have these properties they are also printed to the page.
-*/
+//a function that prints out the random quote selected to the page, it does this by creating strings with HTML tags.
+//The function also uses if conditionals to check if the objects contain the "citation" and "year" property.
+//If the objects have these properties they are also printed to the page.
+
 
 function RandomColors() {
 		var red = Math.floor(Math.random() * 256);
@@ -43,6 +44,11 @@ function RandomColors() {
 function getViewedquotes() {
 
 }
+
+//Takes the random quote function and prints the quote and source to the page.  If citation and year are undefined it does not print them.
+//Resets the message variable to be '' after for a new click to generate a new quote.  Uses the getRandomColors function to change the body's background color.
+//Pushes a quote to a new array if the quotes array is still longer than the viewedquotes array push the quote to the viewed quotes array.
+
 
 function printQuote() {
 				
@@ -65,5 +71,3 @@ function printQuote() {
             }
 
 
-
-//pop an object off the array to no longer have it show up, once the array has 0 objects restart the cycle!
