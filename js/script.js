@@ -6,73 +6,56 @@ document.getElementById('loadQuote').addEventListener("click", printQuote, false
 //defining variables
 
 var message = '';
-var viewedquotes = [];
 
  
-//print function to print the randomly selected quote
+//print function to print the randomly selected quote to the page
  
 function print(message) {     
-                var outputDiv = document.getElementById('quote-box');
-                outputDiv.innerHTML = message;
+        var outputDiv = document.getElementById('quote-box');
+        outputDiv.innerHTML = message;
 }               
  
-//a function that creates a random number between 0 and 4 to randomly select an object or index of the quotes array and return the value of it.
+//a function that creates a random number between 0 and the length of quotes to randomly select an object or index of the quotes array and return the value of it.
 
 function getRandomQuote() {
-                var quoteObject = quotes[Math.floor(Math.random() * quotes.length)];
-                return quoteObject;
+        var quoteObject = quotes[Math.floor(Math.random() * quotes.length)];
+        return quoteObject;
 }
 
 
-//a function that prints out the random quote selected to the page, it does this by creating strings with HTML tags.
-//The function also uses if conditionals to check if the objects contain the "citation" and "year" property.
-//If the objects have these properties they are also printed to the page.
+//RandomColors function to generate random RGB values and return the values
 
 
 function RandomColors() {
 		var red = Math.floor(Math.random() * 256);
 		var green = Math.floor(Math.random() * 256);
 		var blue = Math.floor(Math.random() * 256);
-		var colors = 'rgb(' + red + ',' + green + ',' + blue + ')'
+		var colors = 'rgb(' + red + ',' + green + ',' + blue + ')';
 		return colors;
-		console.log(colors);
 }
 
-function getViewedquotes() {
 
-}
-
-//Takes the random quote function and prints the quote and source to the page.  If citation and year are undefined it does not print them.
-//Resets the message variable to be '' after for a new click to generate a new quote.  Uses the getRandomColors function to change the body's background color.
-//Pushes a quote to a new array if the quotes array is still longer than the viewedquotes array push the quote to the viewed quotes array.
-
+//Takes the random quote function stores it into var printObject and adds them to message variable as a string of paragraphs and spans.
+//If citation and year are undefined it does not print them.
+//Resets the message variable to be '' after for a new click to generate a new quote.  
+//Uses the getRandomColors function to change the body's background color each time the button is clicked.
 
 function printQuote() {
-				
-                var printObject = getRandomQuote();
-                message += '<p class="quote"> ' + printObject.quote + '</p>';
-                message += '<p class="source"> ' + printObject.source + '</p>';
-                	if (printObject.citation !== undefined) {
-                		message += '<span class ="citation"> ' + printObject.citation + '</span>';
-                	}
-                	if (printObject.year !== undefined) {
-                	message += '<span class ="year"> ' + printObject.year + '</span>';
-                	}
-                print(message);
-                message = '';
-               	var pushQuote = viewedquotes.push(printObject);
-                console.log(viewedquotes);
-                var spliceQuote = quotes.splice(printObject,1);
-                var quotesLength = quotes.length;
-                console.log(quotes);
-                if (quotesLength === 0) {
-                    for (i = 0; i <= 5 ; i++) {
-                        quotes.push(viewedquotes[i]);
-                        viewedquotes.splice()
-                    }
-                }
-                var getRandomColors = RandomColors();
-				document.body.style.backgroundColor = getRandomColors;
+		var printObject = getRandomQuote();
+        message += '<p class="quote">' + printObject.quote + '</p>';
+        message += '<p class="source">' + printObject.source + '';
+        if (printObject.citation !== undefined) {
+                message += '<span class ="citation">' + printObject.citation + '</span>';
             }
+        if (printObject.year !== undefined) {
+                message += '<span class ="year">' + printObject.year + '</span>';
+            }
+        message += '</p>';
+        print(message);
+        message = '';
+        var getRandomColors = RandomColors();
+	    document.body.style.backgroundColor = getRandomColors;
+}
 
 
+ 

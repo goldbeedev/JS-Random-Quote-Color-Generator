@@ -1,3 +1,5 @@
+//List of quotes for the random quotes generator, linked to the main html page.
+
 var quotes = [
 {
                 quote: "Some people don't like change, but you need to embrace change if the alternative is disaster.",
