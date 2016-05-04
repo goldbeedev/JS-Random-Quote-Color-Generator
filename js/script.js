@@ -6,6 +6,7 @@ document.getElementById('loadQuote').addEventListener("click", printQuote, false
 //defining variables
 
 var message = '';
+var viewedquotes = [];
 
  
 //print function to print the randomly selected quote
@@ -15,10 +16,6 @@ function print(message) {
                 outputDiv.innerHTML = message;
 }               
  
-//quotes array containing objects for printQuote to print to the page
- 
-var viewedquotes = [];
-
 //a function that creates a random number between 0 and 4 to randomly select an object or index of the quotes array and return the value of it.
 
 function getRandomQuote() {
@@ -63,9 +60,17 @@ function printQuote() {
                 	}
                 print(message);
                 message = '';
-                	if (quotes.length > viewedquotes.length) {
-               		var pushQuote = viewedquotes.push(printObject);
-            	}
+               	var pushQuote = viewedquotes.push(printObject);
+                console.log(viewedquotes);
+                var spliceQuote = quotes.splice(printObject,1);
+                var quotesLength = quotes.length;
+                console.log(quotes);
+                if (quotesLength === 0) {
+                    for (i = 0; i <= 5 ; i++) {
+                        quotes.push(viewedquotes[i]);
+                        viewedquotes.splice()
+                    }
+                }
                 var getRandomColors = RandomColors();
 				document.body.style.backgroundColor = getRandomColors;
             }
